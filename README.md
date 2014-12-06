@@ -74,3 +74,7 @@ $('.selector').jScrollability('self','parent',function($el,pcnt) {
 	});
 });
 ```
+
+##To Do
+
+* Add pre-defined functors for animation similar to the boundary options.

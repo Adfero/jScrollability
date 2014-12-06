@@ -26,7 +26,7 @@ body {
 }
 
 .section-0 h1 {
-    font-size: 8em;
+    font-size: 7em;
     line-height: 1em;
     position: absolute;
     top: 30%;
@@ -39,7 +39,7 @@ body {
     font-size: 4em;
     line-height: 1em;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 0;
     right: 0;
     text-align: center;

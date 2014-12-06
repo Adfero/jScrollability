@@ -79,4 +79,5 @@ $('.selector').jScrollability('self','parent',function($el,pcnt) {
 
 * Setup a GitHub page to host the demo page
 * Improve the demo page
+* Add easing algorithm for percentages
 * Add pre-defined functors for animation similar to the boundary options.

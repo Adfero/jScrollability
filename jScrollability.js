@@ -28,6 +28,30 @@
             }
         });
     }
+    var computeBoundary = function(b,$el,bType) {
+        switch(typeof b) {
+            case 'function':
+                return b($el);
+            case 'string':
+                if (b == 'parent') {
+                    if (bType == 'start') {
+                        return $el.parent().offset().top;
+                    } else if (bType == 'end') {
+                        return $el.parent().offset().top + $el.parent().outerHeight();
+                    }
+                } else if (b == 'self') {
+                    if (bType == 'start') {
+                        return $el.offset().top;
+                    } else if (bType == 'end') {
+                        return $el.offset().top + $el.parent().outerHeight();
+                    }
+                } else {
+                    return 0;
+                }
+            default:
+                return b;
+        }
+    }
     // Start animating once the page is ready
     $(document).ready(function() {
         // Setup jQuery objects for later
@@ -39,10 +63,13 @@
             // Use the end of the browser window as the frame
             var edge = $body.scrollTop() + $window.height();
             $.each(elements,function(i,item) {
+                // Compute the start and end points
+                var start = computeBoundary(item.start,item.el,'start');
+                var end = computeBoundary(item.end,item.el,'end');
                 // If this element boundaries the frame, perform action
-                if (edge >= item.start && edge <= item.end) {
-                    var max = item.end - item.start;
-                    var progressOffset = Math.min(max,Math.max(0,edge - item.start));
+                if (edge >= start && edge <= end) {
+                    var max = end - start;
+                    var progressOffset = Math.min(max,Math.max(0,edge - start));
                     var pcnt = progressOffset / max;
                     item.fn(item.el,pcnt);
                 }

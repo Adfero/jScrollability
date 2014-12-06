@@ -12,6 +12,15 @@ body {
     position: relative;
 }
 
+.section:nth-child(even) {
+    color: #220044;
+}
+
+.section:nth-child(odd) {
+    background: #220044;
+    color: white;
+}
+
 .section-0 {
     text-align: center;
 }
@@ -36,15 +45,39 @@ body {
     text-align: center;
 }
 
-.section-1 {
-    background: #ccc;
-}
-
 .section-1 .slide-in-demo {
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: 100%;
     left: 0;
     text-align: center;
+    font-size: 4em;
+}
+
+.section-2 .reveal-demo {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 4em;
+}
+
+.section-3 .text-wrapper {
+    max-width: 600px;
+    margin: auto;
     font-size: 2em;
+    line-height: 1.5em;
+    padding-top: 20%;
+    
+}
+
+.section-3 .text-wrapper span {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s;
+}
+
+.section-3 .text-wrapper span.visible {
+    opacity: 1;
 }

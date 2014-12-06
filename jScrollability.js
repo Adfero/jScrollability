@@ -66,13 +66,13 @@
                 // Compute the start and end points
                 var start = computeBoundary(item.start,item.el,'start');
                 var end = computeBoundary(item.end,item.el,'end');
-                // If this element boundaries the frame, perform action
-                if (edge >= start && edge <= end) {
-                    var max = end - start;
-                    var progressOffset = Math.min(max,Math.max(0,edge - start));
-                    var pcnt = progressOffset / max;
-                    item.fn(item.el,pcnt);
-                }
+                // Compute the position
+                var max = end - start;
+                var progressOffset = Math.min(max,Math.max(0,edge - start));
+                // Make it a percent
+                var pcnt = progressOffset / max;
+                // Call the functor
+                item.fn(item.el,pcnt);
             });
             _requestAnimationFrame(animate);
         }

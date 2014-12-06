@@ -77,4 +77,6 @@ $('.selector').jScrollability('self','parent',function($el,pcnt) {
 
 ##To Do
 
+* Setup a GitHub page to host the demo page
+* Improve the demo page
 * Add pre-defined functors for animation similar to the boundary options.

@@ -29,17 +29,24 @@
         });
     }
     var computeBoundary = function(b,$el,bType) {
+        // Perform differently based on type
         switch(typeof b) {
+            // If it's a function, just call it
             case 'function':
                 return b($el);
+            // If it's a string, it's a pre-loaded functor
             case 'string':
+                // Get the boundaries of the parent element in the DOM
                 if (b == 'parent') {
+                    // Different values for start and end
                     if (bType == 'start') {
                         return $el.parent().offset().top;
                     } else if (bType == 'end') {
                         return $el.parent().offset().top + $el.parent().outerHeight();
                     }
+                // Get the boundaries of the el 
                 } else if (b == 'self') {
+                    // Different values for start and end
                     if (bType == 'start') {
                         return $el.offset().top;
                     } else if (bType == 'end') {
@@ -48,15 +55,19 @@
                 } else {
                     return 0;
                 }
+            // It might also be a hard-coded value
             default:
                 return b;
         }
     }
     var computeAnimation = function($el,pcnt,fn) {
+        // Perform differently based on type
         switch(typeof fn) {
+            // If it's a function, just call it
             case 'function':
                 fn($el,pcnt);
                 break;
+            // If it's an object, it's a set of CSS transformations
             case 'object':
                 var css = {};
                 for(cssprop in fn) {

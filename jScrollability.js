@@ -83,13 +83,13 @@
     // Start animating once the page is ready
     $(document).ready(function() {
         // Setup jQuery objects for later
-        var $window = $(window), $body = $(document.body);
+        var $window = $(window), $document = $(document);
         // Shim for requestAnimationFrame
         var _requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function(c) { setTimeout(c,10); };
         // Start animating
         var animate = function() {
             // Use the end of the browser window as the frame
-            var edge = $body.scrollTop() + $window.height();
+            var edge = $document.scrollTop() + $window.height();
             $.each(elements,function(i,item) {
                 // Compute the start and end points
                 var start = computeBoundary(item.start,item.el,'start');

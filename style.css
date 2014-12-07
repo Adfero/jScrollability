@@ -47,7 +47,7 @@ body {
 
 .section-0 .headers {
     position: absolute;
-    top: 20%;
+    top: 18%;
     left: 0;
     right: 0;
     max-width: 700px;
@@ -62,7 +62,7 @@ body {
 }
 
 .section-0 h2 {
-    font-size: 2em;
+    font-size: 2.25em;
     line-height: 1.25em;
     margin: 1em 0 0 0;
     max-width: 700px;
@@ -76,7 +76,7 @@ body {
 
 .section-0 .options {
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 0;
     right: 0;
 }

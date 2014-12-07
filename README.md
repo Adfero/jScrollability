@@ -45,7 +45,23 @@ $.jScrollability([
 ]);
 ```
 
-### Advanced Boundary Options
+## Advanced Usage
+
+### Functor Options
+
+Rather than passing-in a new function, you may declare a set of CSS properties, their start and end points, and the units to use so that jScrollability can compute the rest.
+
+```
+$('.selector').jScrollability(10,100,{
+	'left': {
+        'start': 100,
+        'end': 0,
+        'unit': '%'
+    }
+});
+```
+
+### Boundary Options
 
 Instead of setting static values for the start and end boundaries, you can also use either factors or pre-defined functors by passing strings.
 
@@ -80,4 +96,3 @@ $('.selector').jScrollability('self','parent',function($el,pcnt) {
 * Setup a GitHub page to host the demo page
 * Improve the demo page
 * Add easing algorithm for percentages
-* Add pre-defined functors for animation similar to the boundary options.

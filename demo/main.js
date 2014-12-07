@@ -5,20 +5,24 @@
                 'selector': '.slide-in-demo',
                 'start': 'parent',
                 'end': 'parent',
-                'fn': function($el,pcnt) {
-                    $el.css({
-                        'left': ((1 - pcnt) * 100) + '%' 
-                    });
+                'fn': {
+                    'left': {
+                        'start': 100,
+                        'end': 0,
+                        'unit': '%'
+                    }
                 }
             },
             {
                 'selector': '.reveal-demo',
                 'start': 'parent',
                 'end': 'parent',
-                'fn': function($el,pcnt) {
-                    $el.css({
-                        'top': (20 + ((1 - pcnt) * 60)) + '%' 
-                    });
+                'fn': {
+                    'top': {
+                        'start': 100,
+                        'end': 20,
+                        'unit': '%'
+                    }
                 }
             },
             {

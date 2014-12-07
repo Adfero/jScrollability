@@ -52,6 +52,23 @@
                 return b;
         }
     }
+    var computeAnimation = function($el,pcnt,fn) {
+        switch(typeof fn) {
+            case 'function':
+                fn($el,pcnt);
+                break;
+            case 'object':
+                var css = {};
+                for(cssprop in fn) {
+                    var config = fn[cssprop];
+                    var dist = config.end - config.start;
+                    var val = config.start + (pcnt * dist);
+                    css[cssprop] = val + config.unit;
+                }
+                $el.css(css);
+                break;
+        }
+    }
     // Start animating once the page is ready
     $(document).ready(function() {
         // Setup jQuery objects for later
@@ -72,7 +89,7 @@
                 // Make it a percent
                 var pcnt = progressOffset / max;
                 // Call the functor
-                item.fn(item.el,pcnt);
+                computeAnimation(item.el,pcnt,item.fn);
             });
             _requestAnimationFrame(animate);
         }

@@ -1,5 +1,3 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
-
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -7,9 +5,11 @@ body {
 .section {
     clear: both;
     width: 100%;
-    height: 900px;
+    min-height: 900px;
+    overflow: auto;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
 }
 
 .section:nth-child(even) {
@@ -28,27 +28,50 @@ body {
     color: white;
 }
 
+.code-segment {
+    margin-top: 20%;
+}
+
+.code-col h4 {
+    font-weight: bold;
+    margin: 0 0 0.5em 0;
+}
+
+.code {
+
+}
+
 .section-0 {
     text-align: center;
 }
 
 .section-0 .headers {
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 0;
     right: 0;
+    max-width: 700px;
+    margin: auto;
 }
 
 .section-0 h1 {
     font-size: 7em;
     line-height: 1em;
     font-weight: bold;
+    margin: 0;
 }
 
 .section-0 h2 {
     font-size: 2em;
+    line-height: 1.25em;
+    margin: 1em 0 0 0;
+    max-width: 700px;
+}
+
+.section-0 h3 {
+    font-size: 1.5em;
     line-height: 1em;
-    font-weight: normal;
+    margin: 1em 0 0 0;
 }
 
 .section-0 .options {
@@ -59,14 +82,10 @@ body {
 }
 
 .section-0 .options a {
-    display: inline-block;
-    margin: 0 1em;
-    padding: 1em;
-    border: solid white 1px;
-    border-radius: 7px;
+    margin: 0.5em;
+    border-color: white;
+    background: transparent;
     color: white;
-    text-decoration: none;
-    font-size: 14px;
 }
 
 .section-0 .options a:hover {
@@ -76,7 +95,8 @@ body {
 
 .section-1 .slide-in-demo {
     position: absolute;
-    top: 40%;
+    padding-top: 3%;
+    top: 0%;
     width: 100%;
     left: 0;
     text-align: center;
@@ -85,6 +105,7 @@ body {
 
 .section-2 .reveal-demo {
     position: absolute;
+    padding-top: 3%;
     top: 0%;
     width: 100%;
     left: 0;
@@ -98,8 +119,10 @@ body {
     margin: auto;
     font-size: 2em;
     line-height: 1.5em;
-    padding-top: 20%;
-    
+    padding-top: 3%;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 .section-3 .text-wrapper span {
@@ -109,4 +132,30 @@ body {
 
 .section-3 .text-wrapper span.visible {
     opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .section {
+        min-height: 0;
+    }
+    .section-0 {
+        padding: 1em;
+    }
+    .section-0 h1 {
+        font-size: 4em;
+        line-height: 1em;
+    }
+    .section-0 h2 {
+        font-size: 1.5em;
+    }
+    .section-0 h3 {
+        font-size: 1em;
+    }
+    .section-0 .headers {
+        position: static;
+    }
+    .section-0 .options {
+        margin-top: 1.5em;
+        position: static;
+    }
 }

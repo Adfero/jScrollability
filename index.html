@@ -3,29 +3,191 @@
     <head>
         <title>jScrollability</title>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <header class="section section-0">
             <div class="headers">
                 <h1>jScrollability</h1>
-                <h2>Scroll down to see more</h2>
+                <h2>This jQuery plugin helps you build single-scroll pages with complex scroll-based animations.</h2>
+                <h3>Scroll down to see more</h2>
             </div>
             <div class="options">
-                <a class="download" target="_blank" href="https://raw.githubusercontent.com/AdferoInteractive/jScrollability/master/jScrollability.min.js">Download Minified JS</a>
-                <a class="download" target="_blank" href="https://raw.githubusercontent.com/AdferoInteractive/jScrollability/master/jScrollability.js">Download Documented JS</a>
+                <p>
+                    <a class="btn btn-default btn-lg" target="_blank" href="https://raw.githubusercontent.com/AdferoInteractive/jScrollability/master/jScrollability.min.js">Download Minified JS</a>
+                    <a class="btn btn-default btn-lg" target="_blank" href="https://raw.githubusercontent.com/AdferoInteractive/jScrollability/master/jScrollability.js">Download Standard JS</a>
+                </p>
+                <p>
+                <a class="btn btn-default" href="https://github.com/AdferoInteractive/jScrollability">View on GitHub</a>
+                </p>
             </div>
         </header>
         <section class="section section-1">
-            <span class="slide-in-demo">Slide elements in</span>
+            <h3 class="slide-in-demo">Slide elements in</h3>
+            <div class="container code-segment">
+                <div class="col-md-4 code-col">
+                    <h4>HTML</h4>
+                    <pre class="code">
+&#x3C;section class=&#x22;section section-1&#x22;&#x3E;
+    &#x3C;h3 class=&#x22;slide-in-demo&#x22;&#x3E;Slide elements in&#x3C;/h3&#x3E;
+&#x3C;/section&#x3E;
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>CSS</h4>
+                    <pre class="code">
+.section-1 .slide-in-demo {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    font-size: 4em;
+}
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>JS</h4>
+                    <pre class="code">
+(function($) {
+    $(document).ready(function() {
+        $.jScrollability([
+            {
+                'selector': '.slide-in-demo',
+                'start': 'parent',
+                'end': 'parent',
+                'fn': {
+                    'left': {
+                        'start': 100,
+                        'end': 0,
+                        'unit': '%'
+                    }
+                }
+            }
+        ]);
+    });
+})(jQuery);
+                    </pre>
+                </div>
+            </div>
         </section>
         <section class="section section-2">
-            <span class="reveal-demo">Reveal From Bottom</span>
+            <h3 class="reveal-demo">Reveal From Bottom</h3>
+            <div class="container code-segment">
+                <div class="col-md-4 code-col">
+                    <h4>HTML</h4>
+                    <pre class="code">
+&#x3C;section class=&#x22;section section-2&#x22;&#x3E;
+    &#x3C;h3 class=&#x22;reveal-demo&#x22;&#x3E;Reveal From Bottom&#x3C;/h3&#x3E;
+&#x3C;/section&#x3E;
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>CSS</h4>
+                    <pre class="code">
+.section-2 .reveal-demo {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 4em;
+}
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>JS</h4>
+                    <pre class="code">
+(function($) {
+    $(document).ready(function() {
+        $.jScrollability([
+            {
+                'selector': '.reveal-demo',
+                'start': 'parent',
+                'end': 'parent',
+                'fn': {
+                    'top': {
+                        'start': 100,
+                        'end': 15,
+                        'unit': '%'
+                    }
+                }
+            }
+        ]);
+    });
+})(jQuery);
+                    </pre>
+                </div>
+            </div>
         </section>
         <section class="section section-3">
             <p class="text-wrapper">
                 <span>Even reveal</span> <span>whole spans</span> <span>of text</span> <span>within</span> <span>long paragraphs</span> <span>while the user</span> <span>scrolls</span> <span>with jScrollability.</span>
             </p>
+            <div class="container code-segment">
+                <div class="col-md-4 code-col">
+                    <h4>HTML</h4>
+                    <pre class="code">
+&#x3C;section class=&#x22;section section-3&#x22;&#x3E;
+    &#x3C;p class=&#x22;text-wrapper&#x22;&#x3E;
+        &#x3C;span&#x3E;Even reveal&#x3C;/span&#x3E; &#x3C;span&#x3E;whole spans&#x3C;/span&#x3E; &#x3C;span&#x3E;of text&#x3C;/span&#x3E; &#x3C;span&#x3E;within&#x3C;/span&#x3E; &#x3C;span&#x3E;long paragraphs&#x3C;/span&#x3E; &#x3C;span&#x3E;while the user&#x3C;/span&#x3E; &#x3C;span&#x3E;scrolls&#x3C;/span&#x3E; &#x3C;span&#x3E;with jScrollability.&#x3C;/span&#x3E;
+    &#x3C;/p&#x3E;
+&#x3C;/section&#x3E;
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>CSS</h4>
+                    <pre class="code">
+.section-3 .text-wrapper {
+    max-width: 600px;
+    margin: auto;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-top: 4%;
+    
+}
+
+.section-3 .text-wrapper span {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s;
+}
+
+.section-3 .text-wrapper span.visible {
+    opacity: 1;
+}
+                    </pre>
+                </div>
+                <div class="col-md-4 code-col">
+                    <h4>JS</h4>
+                    <pre class="code">
+(function($) {
+    $(document).ready(function() {
+        $.jScrollability([
+            {
+                'selector': '.text-wrapper',
+                'start': function($el) { return $el.offset().top + $el.height() },
+                'end': 'parent',
+                'fn': function($el,pcnt) {
+                    var $spans = $el.find('span');
+                    var point = Math.floor(($spans.length+1) * pcnt);
+                    $spans.each(function(i,el) {
+                        var $span = $(el);
+                        if (i < point) {
+                            $span.addClass('visible');
+                        } else {
+                            $span.removeClass('visible');
+                        }
+                    });
+                }
+            }
+        ]);
+    });
+})(jQuery);
+                    </pre>
+                </div>
+            </div>
         </section>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="jScrollability.min.js"></script>

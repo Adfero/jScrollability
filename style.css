@@ -17,7 +17,14 @@ body {
 }
 
 .section:nth-child(odd) {
-    background: #220044;
+    background: rgba(64,57,115,1);
+    background: -moz-linear-gradient(top, rgba(64,57,115,1) 0%, rgba(34,0,68,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(64,57,115,1)), color-stop(100%, rgba(34,0,68,1)));
+    background: -webkit-linear-gradient(top, rgba(64,57,115,1) 0%, rgba(34,0,68,1) 100%);
+    background: -o-linear-gradient(top, rgba(64,57,115,1) 0%, rgba(34,0,68,1) 100%);
+    background: -ms-linear-gradient(top, rgba(64,57,115,1) 0%, rgba(34,0,68,1) 100%);
+    background: linear-gradient(to bottom, rgba(64,57,115,1) 0%, rgba(34,0,68,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#403973', endColorstr='#220044', GradientType=0 );
     color: white;
 }
 
@@ -25,24 +32,46 @@ body {
     text-align: center;
 }
 
-.section-0 h1 {
-    font-size: 7em;
-    line-height: 1em;
+.section-0 .headers {
     position: absolute;
     top: 30%;
     left: 0;
     right: 0;
-    text-align: center;
+}
+
+.section-0 h1 {
+    font-size: 7em;
+    line-height: 1em;
+    font-weight: bold;
 }
 
 .section-0 h2 {
-    font-size: 4em;
+    font-size: 2em;
     line-height: 1em;
+    font-weight: normal;
+}
+
+.section-0 .options {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 0;
     right: 0;
-    text-align: center;
+}
+
+.section-0 .options a {
+    display: inline-block;
+    margin: 0 1em;
+    padding: 1em;
+    border: solid white 1px;
+    border-radius: 7px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.section-0 .options a:hover {
+    background: white;
+    color: #220044;
 }
 
 .section-1 .slide-in-demo {

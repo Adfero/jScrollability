@@ -19,12 +19,14 @@
             var element = $(item.selector);
             // Only add this item to the array if the selector is valid
             if (element.length > 0) {
-                elements.push({
-                    'start': item.start,
-                    'end': item.end,
-                    'fn': item.fn,
-                    'el': element
-                });
+              element.each(function() {
+                  elements.push({
+                      'start': item.start,
+                      'end': item.end,
+                      'fn': item.fn,
+                      'el': $(this)
+                  });
+              });
             }
         });
     }

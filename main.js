@@ -4,7 +4,7 @@
             {
                 'selector': '.slide-in-demo',
                 'start': 'parent',
-                'end': 'parent',
+                'end': function($el) { return $el.offset().top + $(window).height(); },
                 'fn': {
                     'left': {
                         'start': 100,
@@ -16,7 +16,7 @@
             {
                 'selector': '.reveal-demo',
                 'start': 'parent',
-                'end': 'parent',
+                'end': function($el) { return $el.offset().top + $(window).height(); },
                 'fn': {
                     'top': {
                         'start': 100,
@@ -28,7 +28,7 @@
             {
                 'selector': '.text-wrapper',
                 'start': function($el) { return $el.offset().top + $el.height() },
-                'end': 'parent',
+                'end': function($el) { return $el.offset().top + $(window).height(); },
                 'fn': function($el,pcnt) {
                     var $spans = $el.find('span');
                     var point = Math.floor(($spans.length+1) * pcnt);

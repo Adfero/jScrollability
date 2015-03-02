@@ -52,7 +52,14 @@
                     if (bType == 'start') {
                         return $el.offset().top;
                     } else if (bType == 'end') {
-                        return $el.offset().top + $el.parent().outerHeight();
+                        return $el.offset().top + $el.outerHeight();
+                    }
+                } else if (b == 'window') {
+                    // Different values for start and end
+                    if (bType == 'start') {
+                        return $el.offset().top;
+                    } else if (bType == 'end') {
+                        return $el.offset().top + $(window).height();
                     }
                 } else {
                     return 0;

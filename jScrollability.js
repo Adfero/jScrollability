@@ -1,6 +1,10 @@
 (function($) {
-    // Array of scrollable elements 
+    // Array of scrollable elements
     var elements = [];
+    // Hash of triggered elements
+    var triggered = {};
+    // Incremental id
+    var jScrollIDCounter = 0;
     // jQuery function so you can add single behaviors
     $.fn.jScrollability = function(start,end,fn) {
         this.each(function() {
@@ -8,7 +12,22 @@
                 'start': start,
                 'end': end,
                 'fn': fn,
-                'el': $(this)
+                'el': $(this),
+                'trigger': false,
+                'duration': false
+            });
+        });
+    }
+    // jQuery function so you can add single triggered behaviors
+    $.fn.jScrollabilityTrigger = function(start,duration,fn) {
+        this.each(function() {
+            elements.push({
+                'start': start,
+                'end': false,
+                'fn': fn,
+                'el': $(this),
+                'trigger': true,
+                'duration': duration
             });
         });
     }
@@ -22,7 +41,9 @@
               element.each(function() {
                   elements.push({
                       'start': item.start,
-                      'end': item.end,
+                      'end': item.trigger === true ? false : item.end,
+                      'trigger': item.trigger === true,
+                      'duration': item.trigger === true ? item.duration : false,
                       'fn': item.fn,
                       'el': $(this)
                   });
@@ -46,7 +67,7 @@
                     } else if (bType == 'end') {
                         return $el.parent().offset().top + $el.parent().outerHeight();
                     }
-                // Get the boundaries of the el 
+                // Get the boundaries of the el
                 } else if (b == 'self') {
                     // Different values for start and end
                     if (bType == 'start') {
@@ -89,6 +110,10 @@
                 break;
         }
     }
+    var generateUniqueId = function() {
+      // Just return an incremented number
+      return (jScrollIDCounter++) + '';
+    }
     // Start animating once the page is ready
     $(document).ready(function() {
         // Setup jQuery objects for later
@@ -99,17 +124,48 @@
         var animate = function() {
             // Use the end of the browser window as the frame
             var edge = $document.scrollTop() + $window.height();
+            // Get the current time for triggered animations
+            var now = Date.now();
             $.each(elements,function(i,item) {
-                // Compute the start and end points
+                // Compute the start point
                 var start = computeBoundary(item.start,item.el,'start');
-                var end = computeBoundary(item.end,item.el,'end');
-                // Compute the position
-                var max = end - start;
-                var progressOffset = Math.min(max,Math.max(0,edge - start));
-                // Make it a percent
-                var pcnt = progressOffset / max;
-                // Call the functor
-                computeAnimation(item.el,pcnt,item.fn);
+                if (item.trigger === true) {
+                    // Get the element's unique id for tracking
+                    var uniqueId = item.el.attr('data-jscrollability-id');
+                    // If there's no id, make one
+                    if (!uniqueId) {
+                        uniqueId = generateUniqueId();
+                        item.el.attr('data-jscrollability-id',uniqueId);
+                    }
+                    // If the id isn't in the triggered hash and it's past its window, then let's get it started
+                    if (edge >= start && !triggered[uniqueId]) {
+                        triggered[uniqueId] = now;
+                    // Otherwise check if its already been started; a true mean's its done
+                    } else if (triggered[uniqueId] && triggered[uniqueId] !== true) {
+                        // Get the time elapsed since the start
+                        var delta = now - triggered[uniqueId];
+                        // Find the percent complete by dividing that delta by the duration
+                        var pcnt = delta / item.duration;
+                        // If the percent is less than one, render the animation
+                        if (pcnt < 1) {
+                            computeAnimation(item.el,pcnt,item.fn);
+                        // If the percent is greater than or equal to one, then mark the animation as done and render it finally
+                        } else {
+                            computeAnimation(item.el,1,item.fn);
+                            triggered[uniqueId] = true;
+                        }
+                    }
+                } else {
+                    // Compute the end point
+                    var end = computeBoundary(item.end,item.el,'end');
+                    // Compute the position
+                    var max = end - start;
+                    var progressOffset = Math.min(max,Math.max(0,edge - start));
+                    // Make it a percent
+                    var pcnt = progressOffset / max;
+                    // Call the functor
+                    computeAnimation(item.el,pcnt,item.fn);
+                }
             });
             _requestAnimationFrame(animate);
         }

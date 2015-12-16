@@ -1,17 +1,29 @@
 #jScrollability
 
-This jQuery plugin helps you build single-scroll pages with complex scroll-based animations a la the NYTimes Snowfall feature. As the user scrolls, this plugin will animate the position of items based on the scroll position. To use it, you select various page elements, set the boundary points for their behavior, and then define a functor to compute the behavior.
+This jQuery plugin helps you build single-scroll pages with complex scroll-based animations a la the NYTimes Snowfall feature. As the user scrolls, this plugin will animate the position of items based on the scroll position. To use it, you select various page elements, set the boundary points for their behavior, and then define a functor to compute the behavior. Animations can occur continuously with progress determined by the scroll depth between two vertical points on the page so that animations occur based on the scroll rate of the user, or animations can be triggered by the the scroll depth passing a vertical point and then animating only once over a set duration.
 
 ##How To Use
 
 ###Option A: Single Behavior
 
-For quick usage, you can setup jScrollability for a single element: `.jScrollability(<start boundary>,<end boundary>,<functor>)`.
+For quick usage, you can setup jScrollability for a single element: `.jScrollability(<start boundary>,<end boundary>,<functor>)` or `.jScrollabilityTrigger(<start boundary>,<duration>,<functor>)`.
+
+#### Continuously:
 
 ```
 $('.selector').jScrollability(10,100,function($el,pcnt) {
 	$el.css({
-		'left': ((1 - pcnt) * 100) + '%' 
+		'left': ((1 - pcnt) * 100) + '%'
+	});
+});
+```
+
+#### Triggered:
+
+```
+$('.selector').jScrollabilityTrigger(10,2000,function($el,pcnt) {
+	$el.css({
+		'left': ((1 - pcnt) * 100) + '%'
 	});
 });
 ```
@@ -28,17 +40,18 @@ $.jScrollability([
         'end': 1800,
         'fn': function($el,pcnt) {
             $el.css({
-                'left': ((1 - pcnt) * 100) + '%' 
+                'left': ((1 - pcnt) * 100) + '%'
             });
         }
     },
     {
         'selector': '.reveal-demo',
         'start': 1800,
-        'end': 2700,
+        'trigger': true,
+				'duration': 3000,
         'fn': function($el,pcnt) {
             $el.css({
-                'top': (20 + ((1 - pcnt) * 60)) + '%' 
+                'top': (20 + ((1 - pcnt) * 60)) + '%'
             });
         }
     }
@@ -73,7 +86,7 @@ $('.selector').jScrollability(
 	function($el) { return $el.offset().top + $el.height(); },
 	function($el,pcnt) {
 		$el.css({
-			'left': ((1 - pcnt) * 100) + '%' 
+			'left': ((1 - pcnt) * 100) + '%'
 		});
 	}
 );
@@ -86,11 +99,7 @@ Also available are the *self* and *parent* functors. If you pass either of those
 ```
 $('.selector').jScrollability('self','parent',function($el,pcnt) {
 	$el.css({
-		'left': ((1 - pcnt) * 100) + '%' 
+		'left': ((1 - pcnt) * 100) + '%'
 	});
 });
 ```
-
-##To Do
-
-* Add easing algorithm for percentages

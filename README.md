@@ -12,9 +12,9 @@ For quick usage, you can setup jScrollability for a single element: `.jScrollabi
 
 ```
 $('.selector').jScrollability(10,100,function($el,pcnt) {
-	$el.css({
-		'left': ((1 - pcnt) * 100) + '%'
-	});
+  $el.css({
+    'left': ((1 - pcnt) * 100) + '%'
+  });
 });
 ```
 
@@ -22,9 +22,9 @@ $('.selector').jScrollability(10,100,function($el,pcnt) {
 
 ```
 $('.selector').jScrollabilityTrigger(10,2000,function($el,pcnt) {
-	$el.css({
-		'left': ((1 - pcnt) * 100) + '%'
-	});
+  $el.css({
+    'left': ((1 - pcnt) * 100) + '%'
+  });
 });
 ```
 
@@ -34,27 +34,27 @@ To quickly setup behaviors for multiple elements, you can use `$.jScrollability(
 
 ```
 $.jScrollability([
-    {
-        'selector': '.slide-in-demo',
-        'start': 900,
-        'end': 1800,
-        'fn': function($el,pcnt) {
-            $el.css({
-                'left': ((1 - pcnt) * 100) + '%'
-            });
-        }
-    },
-    {
-        'selector': '.reveal-demo',
-        'start': 1800,
-        'trigger': true,
-				'duration': 3000,
-        'fn': function($el,pcnt) {
-            $el.css({
-                'top': (20 + ((1 - pcnt) * 60)) + '%'
-            });
-        }
+  {
+    'selector': '.slide-in-demo',
+    'start': 900,
+    'end': 1800,
+    'fn': function($el,pcnt) {
+      $el.css({
+        'left': ((1 - pcnt) * 100) + '%'
+      });
     }
+  },
+  {
+    'selector': '.reveal-demo',
+    'start': 1800,
+    'trigger': true,
+        'duration': 3000,
+    'fn': function($el,pcnt) {
+      $el.css({
+        'top': (20 + ((1 - pcnt) * 60)) + '%'
+      });
+    }
+  }
 ]);
 ```
 
@@ -66,11 +66,11 @@ Rather than passing-in a new function, you may declare a set of CSS properties, 
 
 ```
 $('.selector').jScrollability(10,100,{
-	'left': {
-        'start': 100,
-        'end': 0,
-        'unit': '%'
-    }
+  'left': {
+    'start': 100,
+    'end': 0,
+    'unit': '%'
+  }
 });
 ```
 
@@ -82,13 +82,13 @@ Instead of setting static values for the start and end boundaries, you can also 
 
 ```
 $('.selector').jScrollability(
-	function($el) { return $el.offset().top; },
-	function($el) { return $el.offset().top + $el.height(); },
-	function($el,pcnt) {
-		$el.css({
-			'left': ((1 - pcnt) * 100) + '%'
-		});
-	}
+  function($el) { return $el.offset().top; },
+  function($el) { return $el.offset().top + $el.height(); },
+  function($el,pcnt) {
+    $el.css({
+      'left': ((1 - pcnt) * 100) + '%'
+    });
+  }
 );
 ```
 
@@ -98,8 +98,8 @@ Also available are the *self* and *parent* functors. If you pass either of those
 
 ```
 $('.selector').jScrollability('self','parent',function($el,pcnt) {
-	$el.css({
-		'left': ((1 - pcnt) * 100) + '%'
-	});
+  $el.css({
+    'left': ((1 - pcnt) * 100) + '%'
+  });
 });
 ```

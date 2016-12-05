@@ -99,14 +99,42 @@
         break;
       // If it's an object, it's a set of CSS transformations
       case 'object':
-        var css = {};
-        for(cssprop in fn) {
-          var config = fn[cssprop];
-          var dist = config.end - config.start;
-          var val = config.start + (pcnt * dist);
-          css[cssprop] = val + config.unit;
+        if (fn.class) {
+          if (pcnt > 0) {
+            if (fn.add) {
+              fn.add.forEach(function(klasss) {
+                $el.addClass(klass);
+              });
+            }
+            if (fn.remove) {
+              fn.remove.forEach(function(klasss) {
+                $el.removeClass(klass);
+              });
+            }
+          } else {
+            if (fn.add) {
+              fn.add.forEach(function(klasss) {
+                $el.removeClass(klass);
+              });
+            }
+            if (fn.remove) {
+              fn.remove.forEach(function(klasss) {
+                $el.addClass(klass);
+              });
+            }
+          }
         }
-        $el.css(css);
+        if (fn.styles || (!fn.styles && !fn.class)) {
+          var styleObject = fn.styles || fn;
+          var css = {};
+          for(cssprop in styleObject) {
+            var config = styleObject[cssprop];
+            var dist = config.end - config.start;
+            var val = config.start + (pcnt * dist);
+            css[cssprop] = val + config.unit;
+          }
+          $el.css(css);
+        }
         break;
     }
   }
